@@ -41,17 +41,18 @@ def convertToBW():
     inputFile = raw_input("Please enter file: ")
     print "you entered", inputFile
     dirEntries = os.listdir("/" + inputFile)
-    L = R * 299/1000 + G * 587/1000 + B * 114/1000
-    im = Image.new("RGBA", size, "white")
-    im.convert(L)
+    name = os.path.splitext(inputFile)
+    im = Image.open(name)
+    im = image_file.convert('1') # convert image to black and white
+    im.save('result.png')
     return
 
 #main program loop
 selection = ""
 while selection.strip() != 'quit':
-    print "Press 1 to rotate images"
+    print "Press 1 to rotate images and compact to one image"
     print "Press 2 to create image thumbnails"
-    print "Press 3 to create black and white copies"
+    print "Press 3 to create black and white copy"
     selection = raw_input("Please enter command: ")
     print "you entered", selection
     if selection=="1":
