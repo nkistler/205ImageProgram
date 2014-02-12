@@ -2,7 +2,6 @@
 import re, os
 from PIL import Image
 
-#Takes a folder name from the user and creates a collage of rotated images from that folder one on top of the other
 def rotateCollage():
     inputDir = raw_input("Please enter directory: ")
     print "you entered", inputDir
@@ -24,21 +23,18 @@ def rotateCollage():
         im.save(imageName + '.jpg')
     return
 
-#Takes a folder name from the user and creates thumbnail copies of all images in that directory
 def createThumbnails():
     inputDir = raw_input("Please enter directory: ")
     print "you entered", inputDir
     dirEntries = os.listdir("/" + inputDir)
     return
 
-#Takes a file name from user and creates a black and white copy of that image
 def convertToBW():
     inputFile = raw_input("Please enter file: ")
     print "you entered", inputFile
     dirEntries = os.listdir("/" + inputFile)
     return
 
-#main program loop
 selection = ""
 while selection.strip() != 'quit':
     print "Press 1 to rotate images"
@@ -47,11 +43,11 @@ while selection.strip() != 'quit':
     selection = raw_input("Please enter command: ")
     print "you entered", selection
     if selection=="1":
-        rotateCollage() #executes rotate function
+        rotateCollage()
     if selection=="2":
-        createThumbnails() #executes create thumbnail function
+        createThumbnails()
     if selection=="3":
-        convertToBW() #executes convert to black and white function
+        convertToBW()
     
             
 
