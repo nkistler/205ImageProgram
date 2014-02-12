@@ -11,7 +11,7 @@ def rotateCollage():
     docList = []
     size = 2816, 2112
     angle = 0
-    imageName = re.sub(r'/', r'', cmmnd)
+    imageName = re.sub(r'/', r'', inputDir)
     im = Image.new("RGBA", size, "white")
     for entry in dirEntries:
     	if re.search(r'.jpg', entry):
