@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import re, os
+import glob, re, os
 from PIL import Image
 
 #Takes a folder name from the user and creates a collage of rotated images from that folder one on top of the other
@@ -29,6 +29,11 @@ def createThumbnails():
     inputDir = raw_input("Please enter directory: ")
     print "you entered", inputDir
     dirEntries = os.listdir("/" + inputDir)
+    for dirEntries in glob.glob("*.jpg"):
+        file, ext = os.path.splitext(dirEntries)
+        im = Image.open(dirEntries)
+        im.thumbnail((512, 256), Image.ANTIALIAS)
+        im.save(file + ".thumbnail", "JPEG")
     return
 
 #Takes a file name from user and creates a black and white copy of that image
@@ -36,6 +41,9 @@ def convertToBW():
     inputFile = raw_input("Please enter file: ")
     print "you entered", inputFile
     dirEntries = os.listdir("/" + inputFile)
+    L = R * 299/1000 + G * 587/1000 + B * 114/1000
+    im = Image.new("RGBA", size, "white")
+    im.convert(L)
     return
 
 #main program loop
