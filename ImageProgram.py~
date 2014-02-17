@@ -4,14 +4,14 @@ from PIL import Image
 
 #Takes a folder name from the user and creates a collage of rotated images from that folder one on top of the other
 def rotateCollage():
-    inputDir = raw_input("Please enter directory: ")
-    print "you entered", inputDir
-    dirEntries = os.listdir("/" + inputDir)
     docNumber = 0
     docList = []
     size = 2816, 2112
     angle = 0
-    imageName = re.sub(r'/', r'', inputDir)
+    inputDir = raw_input("Please enter directory: ")
+    print "You entered ", inputDir
+    dirEntries = os.listdir("/" + inputDir)
+    imageName = re.sub(r'/', r'_', inputDir)
     im = Image.new("RGBA", size, "white")
     for entry in dirEntries:
     	if re.search(r'.jpg', entry):
@@ -27,7 +27,7 @@ def rotateCollage():
 #Takes a folder name from the user and creates thumbnail copies of all images in that directory
 def createThumbnails():
     inputDir = raw_input("Please enter directory: ")
-    print "you entered", inputDir
+    print "You entered ", inputDir
     dirEntries = os.listdir("/" + inputDir)
     for dirEntries in glob.glob("*.jpg"):
         file, ext = os.path.splitext(dirEntries)
@@ -39,10 +39,11 @@ def createThumbnails():
 #Takes a file name from user and creates a black and white copy of that image
 def convertToBW():
     inputFile = raw_input("Please enter file: ")
-    print "you entered", inputFile
+    print "You entered ", inputFile
+    file, ext = os.path.splitext(inputFile)
     fileObject = Image.open("/" + inputFile)
-    im = fileObject.convert('1')
-    im.save(file + ".bw", "JPEG")
+    image_file = fileObject.convert('1') # convert image to black and white
+    image_file.save(file + ".bw")
     return
 
 #main program loop
@@ -52,12 +53,12 @@ while selection.strip() != 'quit':
     print "Press 2 to create image thumbnails"
     print "Press 3 to create black and white copy"
     selection = raw_input("Please enter command: ")
-    print "you entered", selection
+    print "You entered ", selection
     if selection=="1":
         rotateCollage() #executes rotate function
-    if selection=="2":
+    elif selection=="2":
         createThumbnails() #executes create thumbnail function
-    if selection=="3":
+    elif selection=="3":
         convertToBW() #executes convert to black and white function
     
             
