@@ -40,11 +40,9 @@ def createThumbnails():
 def convertToBW():
     inputFile = raw_input("Please enter file: ")
     print "you entered", inputFile
-    dirEntries = os.listdir("/" + inputFile)
-    name = os.path.splitext(inputFile)
-    im = Image.open(name)
-    im = image_file.convert('1') # convert image to black and white
-    im.save('result.png')
+    fileObject = Image.open("/" + inputFile)
+    image_file = fileObject.convert('1') # convert image to black and white
+    image_file.save('result.png')
     return
 
 #main program loop
